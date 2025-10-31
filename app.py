@@ -4,6 +4,7 @@ banco = sqlite3.connect('banco.db')
 
 cursor = banco.cursor()
 
+# 3 criar a tabela livros
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS livros(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,7 +15,7 @@ cursor.execute('''
         disponivel INTEGER NOT NULL DEFAULT 1 CHECK (disponivel IN (0, 1)))
 ''')
 
-# inserir 5 livros
+# 4 inserir 5 livros
 cursor.executemany('''
     INSERT OR IGNORE INTO livros (titulo, autor, ano, genero, disponivel)
         VALUES (?, ?, ?, ?, ?)
@@ -26,5 +27,15 @@ cursor.executemany('''
     ('A Revolução dos Bichos', 'George Orwell', 1945, 'Sátira política / Fábula', 1)
     ])
 
+# 5 consultar livros disponiveis
+livros_disponiveis = cursor.execute('''
+    SELECT * FROM livros WHERE disponivel = 1
+''')
+
+resultados = livros_disponiveis.fetchall()
+for livro in resultados:
+    print(livro)
+
 banco.commit()
 banco.close()
+
