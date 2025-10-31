@@ -54,8 +54,10 @@ def consultar_livros_disponiveis():
 
     banco.commit()
     banco.close()
-# 6 atualizar disponibilidade
 
+
+
+# 6 atualizar disponibilidade
 def atualizar_diponibilidade():
     banco = conectar_banco()
     cursor = banco.cursor()
@@ -69,6 +71,19 @@ def atualizar_diponibilidade():
     banco.close()
 
 
+# 7 ordernar livros por ano
+def ordernar_livros_por_ano():
+    banco = conectar_banco()
+    cursor = banco.cursor()
+    livros_ordernados_decrescente = cursor.execute('''
+        SELECT * FROM livros
+        ORDER BY ano DESC;
+    ''')
+    resultados = livros_ordernados_decrescente
+    for livro in resultados:
+        print(livro)
+    banco.commit()
+    banco.close()
 
 
 if __name__ == "__main__":
@@ -76,3 +91,4 @@ if __name__ == "__main__":
     inserir_livros()
     consultar_livros_disponiveis()
     atualizar_diponibilidade()
+    ordernar_livros_por_ano()
