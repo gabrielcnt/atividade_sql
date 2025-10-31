@@ -113,10 +113,32 @@ def criar_tabela_usuario():
 def alterar_tabela_usuario():
     banco = conectar_banco()
     cursor = banco.cursor()
-    cursor.execute('''
-        ALTER TABLE usuario
-        ADD idade INTEGER
-    ''')
+    try:
+        cursor.execute('''
+            ALTER TABLE usuario
+            ADD idade INTEGER
+        ''')
+    except sqlite3.OperationalError:
+        pass
+
+# 11 inserir 5 usuarios
+def inserir_usuarios():
+    banco = conectar_banco()
+    cursor = banco.cursor()
+    cursor.executemany('''
+        INSERT OR IGNORE INTO usuario (nome, idade)
+            VALUES (?, ?)
+    ''', [
+        ('Maira', 23),
+        ('Gomelor', 36),
+        ('Sinfane', 19),
+        ('Katefy', 47),
+        ('Crodoteica', 38)
+    ])
+
+
+    banco.commit()
+    banco.close()
 
 
 if __name__ == "__main__":
@@ -128,3 +150,4 @@ if __name__ == "__main__":
     deletar_livro_antigo()
     criar_tabela_usuario()
     alterar_tabela_usuario()
+    inserir_usuarios()
