@@ -86,9 +86,23 @@ def ordernar_livros_por_ano():
     banco.close()
 
 
+# 8 deletar um livro antigo
+def deletar_livro_antigo():
+    banco = conectar_banco()
+    cursor = banco.cursor()
+    cursor.execute('''
+        DELETE FROM livros
+        WHERE ano < 1940;
+    ''')
+
+    banco.commit()
+    banco.close()
+
+
 if __name__ == "__main__":
     criar_tabela_livros()
     inserir_livros()
     consultar_livros_disponiveis()
     atualizar_diponibilidade()
     ordernar_livros_por_ano()
+    deletar_livro_antigo()
