@@ -54,8 +54,25 @@ def consultar_livros_disponiveis():
 
     banco.commit()
     banco.close()
+# 6 atualizar disponibilidade
+
+def atualizar_diponibilidade():
+    banco = conectar_banco()
+    cursor = banco.cursor()
+    cursor.execute('''
+        UPDATE livros
+        SET disponivel = 1
+        WHERE id = 4
+    ''')
+
+    banco.commit()
+    banco.close()
+
+
+
 
 if __name__ == "__main__":
     criar_tabela_livros()
     inserir_livros()
     consultar_livros_disponiveis()
+    atualizar_diponibilidade()
