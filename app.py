@@ -141,6 +141,17 @@ def inserir_usuarios():
     banco.close()
 
 
+
+# 12 apagar tabela usuario
+def apagar_tabela_usuario():
+    banco = conectar_banco()
+    cursor = banco.cursor()
+    cursor.execute('''
+        DROP TABLE usuario
+    ''')
+
+
+
 if __name__ == "__main__":
     criar_tabela_livros()
     inserir_livros()
@@ -151,3 +162,4 @@ if __name__ == "__main__":
     criar_tabela_usuario()
     alterar_tabela_usuario()
     inserir_usuarios()
+    apagar_tabela_usuario()
