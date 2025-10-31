@@ -99,6 +99,26 @@ def deletar_livro_antigo():
     banco.close()
 
 
+# 9 criar tabela usuario
+def criar_tabela_usuario():
+    banco = conectar_banco()
+    cursor = banco.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS usuario(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT)
+    ''')
+
+# 10 alterar tabela usuario
+def alterar_tabela_usuario():
+    banco = conectar_banco()
+    cursor = banco.cursor()
+    cursor.execute('''
+        ALTER TABLE usuario
+        ADD idade INTEGER
+    ''')
+
+
 if __name__ == "__main__":
     criar_tabela_livros()
     inserir_livros()
@@ -106,3 +126,5 @@ if __name__ == "__main__":
     atualizar_diponibilidade()
     ordernar_livros_por_ano()
     deletar_livro_antigo()
+    criar_tabela_usuario()
+    alterar_tabela_usuario()
