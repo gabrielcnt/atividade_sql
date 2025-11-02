@@ -4,7 +4,7 @@ import sqlite3
 
 def conectar_banco():
     
-    return sqlite3.connect('banco.db')
+    return sqlite3.connect('livraria.db')
 
 
 # 3 criar a tabela livros

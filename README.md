@@ -32,12 +32,29 @@ pip freeze > requirements.txt
 
 ## Como executar
 
-1. Salve o código em um arquivo .py, por exemplo `app.py`
-2. Execute no terminal:
+### 1. Clone o repositório
 ```
-python app.py
+git clone https:_/github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+```
+### 2. Crie e ative o ambiente virtual:
+
+***Linux***
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+***Windows***
+```
+python -m venv venv
+venv\Scripts\activate
 ```
 
+### 3. Instale as dependências (se houver)
+```pip install -r requirements.txt```
+
+### 4. Execute o script
+```pyhon livros_sqlite.py```
 
 ### Tabela livros
 | Coluna     | Tipo    | Restrições                          |
@@ -58,7 +75,15 @@ python app.py
 | idade      | INTEGER |                                     |
 
 
-
+## Estrutura do projeto
+    meu-projeto-sql/
+    │
+    ├── venv/ # (ignorado pelo git)
+    ├── .gitignore
+    ├── livraria.db
+    ├── livros_sqlite.py
+    ├── README.md
+    └── requirements.txt
 
 ## Fundamentos de Banco de dados
 
